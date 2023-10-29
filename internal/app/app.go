@@ -17,9 +17,9 @@ func Run() {
 	//	HTTP server
 	router := gin.Default()
 
-	config := cors.DefaultConfig()
-	config.AllowAllOrigins = true
-	router.Use(cors.New(config))
+	corsConfig := cors.DefaultConfig()
+	corsConfig.AllowOrigins = []string{"*"}
+	router.Use(cors.New(corsConfig))
 
 	// Swagger
 	docs.SwaggerInfo.BasePath = "/v1"
