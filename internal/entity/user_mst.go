@@ -11,3 +11,7 @@ type UserMst struct {
 	IsDeleted int8   `json:"is_deleted"`
 	common.CUEntity
 }
+
+func (UserMst) TableName() string {
+	return "user_mst"
+}

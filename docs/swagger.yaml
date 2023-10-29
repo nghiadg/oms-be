@@ -1,0 +1,50 @@
+definitions:
+  entity.LoginPayload:
+    properties:
+      email:
+        type: string
+      login_pass:
+        type: string
+    required:
+    - email
+    - login_pass
+    type: object
+  entity.LoginRes:
+    properties:
+      access_token:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      refresh_token:
+        type: string
+      user_id:
+        type: integer
+    type: object
+info:
+  contact: {}
+  title: Swagger API Document
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      parameters:
+      - description: LoginPayload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/entity.LoginPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.LoginRes'
+      tags:
+      - Authentication
+swagger: "2.0"
