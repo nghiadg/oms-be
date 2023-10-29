@@ -2,6 +2,9 @@ package app
 
 import (
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"oms-be/docs"
 	v1 "oms-be/internal/module/auth/controller/http/v1"
 	"oms-be/pkg/postgres"
 )
@@ -11,11 +14,15 @@ func Run() {
 	db := postgres.Connect()
 
 	//	HTTP server
-	handler := gin.Default()
+	router := gin.Default()
 
-	v1.NewRouter(handler, db)
+	// Swagger
+	docs.SwaggerInfo.BasePath = "/v1"
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	err := handler.Run()
+	v1.AuthRouter(router, db)
+
+	err := router.Run()
 
 	if err != nil {
 		return

@@ -1,0 +1,79 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Swagger API Document",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Authentication"
+                ],
+                "parameters": [
+                    {
+                        "description": "LoginPayload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.LoginPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/entity.LoginRes"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "entity.LoginPayload": {
+            "type": "object",
+            "required": [
+                "email",
+                "login_pass"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "login_pass": {
+                    "type": "string"
+                }
+            }
+        },
+        "entity.LoginRes": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

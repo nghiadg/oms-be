@@ -5,10 +5,13 @@ import (
 	"gorm.io/gorm"
 )
 
-func NewRouter(handler *gin.Engine, db *gorm.DB) {
+func AuthRouter(handler *gin.Engine, db *gorm.DB) {
 	//	setup common middleware here
 	h := handler.Group("/v1")
 	{
-		newRoutes(h, db)
+		r := h.Group("/auth")
+		{
+			r.POST("/login", login(db))
+		}
 	}
 }
