@@ -24,6 +24,30 @@ definitions:
       user_id:
         type: integer
     type: object
+  entity.RegisterPayload:
+    properties:
+      confirm_login_pass:
+        type: string
+      email:
+        type: string
+      login_pass:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    required:
+    - confirm_login_pass
+    - email
+    - login_pass
+    - name
+    - phone
+    type: object
+  entity.RegisterRes:
+    properties:
+      success:
+        type: boolean
+    type: object
 info:
   contact: {}
   title: Swagger API Document
@@ -45,6 +69,24 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/entity.LoginRes'
+      tags:
+      - Authentication
+  /auth/register:
+    post:
+      parameters:
+      - description: RegisterPayload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/entity.RegisterPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.RegisterRes'
       tags:
       - Authentication
 swagger: "2.0"
