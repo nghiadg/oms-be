@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -15,6 +16,10 @@ func Run() {
 
 	//	HTTP server
 	router := gin.Default()
+
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	router.Use(cors.New(config))
 
 	// Swagger
 	docs.SwaggerInfo.BasePath = "/v1"
