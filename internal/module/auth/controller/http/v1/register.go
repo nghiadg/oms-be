@@ -12,7 +12,7 @@ import (
 	"oms-be/internal/module/auth/usecase"
 )
 
-// Login godoc
+// Register godoc
 // @Tags Authentication
 // @Produce application/json
 // @Param payload body entity.RegisterPayload true "RegisterPayload"
