@@ -43,6 +43,35 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/auth/register": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Authentication"
+                ],
+                "parameters": [
+                    {
+                        "description": "RegisterPayload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.RegisterPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/entity.RegisterRes"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -81,6 +110,41 @@ const docTemplate = `{
                 },
                 "user_id": {
                     "type": "integer"
+                }
+            }
+        },
+        "entity.RegisterPayload": {
+            "type": "object",
+            "required": [
+                "confirm_login_pass",
+                "email",
+                "login_pass",
+                "name",
+                "phone"
+            ],
+            "properties": {
+                "confirm_login_pass": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "login_pass": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "entity.RegisterRes": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean"
                 }
             }
         }
